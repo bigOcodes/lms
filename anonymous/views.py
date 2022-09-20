@@ -12,6 +12,15 @@ from django.http import HttpResponse
 def Index(request):
     return render(request, 'Index.html')
 
+'''
+django-rest api 
+BooksAPI - use to fetch all books and using GET method for fetching data
+BooksDetailsAPI - use to fetch a book by id and using GET method for fetching data. for e.g., booksDetailsAPI/1/
+AddBooksAPI - use to add book to database and using POST method for post a data into database
+EditBookAPI - use to update existing data in database
+DeleteBookAPI - use to delete data from database
+'''
+
 @api_view(['GET'])
 def BooksAPI(request):
     books = Books.objects.all().order_by('id')
@@ -58,6 +67,19 @@ def home(request):
     books = Books.objects.all()
     return render(request, 'studentView.html', {'books':books})
 
+'''
+login function - 
+requesting for email and password from form in login.html file which is present inside templates folder.
+    email = request.POST['email']
+    password = request.POST['password']
+    
+validating using email and password whether this data is present inside database or not.
+ob = Admin.objects.get(email = email, password = password)
+is present will return a boolean value True or False.
+if true -> render to index page
+else -> it will show an error
+'''
+
 def login(request):
     if request.method == "POST":
         email = request.POST['email']
@@ -69,6 +91,18 @@ def login(request):
         except:
             messages.error(request, "Invalid email or password! or Not exist. SignUp your account first!")
     return render(request, 'login.html')
+
+
+'''
+signup function - 
+requesting for name, email and password from form in signup.html file which is present inside templates folder.
+    name = request.POST['name']
+    email = request.POST['email']
+    password = request.POST['password']
+    
+validating using email and name whether this data is exist inside database or not if 
+exist will raise an error data already exist if not then create the profile using name, email and password.
+'''
 
 def signup(request):
     if request.method == "POST":

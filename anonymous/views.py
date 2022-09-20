@@ -13,7 +13,7 @@ def Index(request):
     return render(request, 'Index.html')
 
 '''
-django-rest api 
+django-rest api Documentation
 BooksAPI - use to fetch all books and using GET method for fetching data
 BooksDetailsAPI - use to fetch a book by id and using GET method for fetching data. for e.g., booksDetailsAPI/1/
 AddBooksAPI - use to add book to database and using POST method for post a data into database

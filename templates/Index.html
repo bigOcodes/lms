@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Library management System</title>
+</head>
+
+<body>
+    <div class="container-fluid py-4">
+        <div class="row mb-4">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4">Library Management System</h1>
+                <p>Click to <a href="/">Logout! <i class="bi bi-box-arrow-right"></i></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row my-2">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    <i class="bi bi-file-earmark-plus"></i> Add Book
+                </button>
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col-sm-12 table-responsive">
+                <table id="Book-Records" class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Book Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="container">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addBook" action="">
+                            {% csrf_token %}
+                            <input type="hidden" id="Myid" value="">
+                            <div class="form-group mb-3">
+                                <label for="b-title">Book Name</label>
+                                <input type="text" class="form-control" id="b-title" name="title"
+                                    placeholder="Book Name" value="" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="b-category">Category</label>
+                                <select class="form-control form-select" aria-placeholder="Category" id="b-category"
+                                    name="category" value="" required>
+                                    <option selected disabled>Category</option>
+                                    <option value="History">History</option>
+                                    <option value="Health & body">Health & body</option>
+                                    <option value="Religion">Religion</option>
+                                    <option value="Computers & Technology">Computers & Technology</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="b-author">Author</label>
+                                <input type="text" class="form-control" id="b-author" name="author" placeholder="Author"
+                                    value="" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="b-price">Price</label>
+                                <input type="number" class="form-control" id="b-price" name="price" placeholder="Price"
+                                    value="" required>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-sm" id="b-create">Save changes</button>
+                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="container">
+        <div class="modal fade" id="editBook" tabindex="-1" data-backdrop="static" data-keyboard="false"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Book</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editBook" action="">
+                            {% csrf_token %}
+                            <input type="hidden" id="Myid" value="">
+                            <div class="form-group mb-3">
+                                <label for="b-name">Book Name</label>
+                                <input type="text" class="form-control" id="b-name" name="title" placeholder="Book Name"
+                                    value="" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="b-category">Category</label>
+                                <select class="form-control form-select" aria-placeholder="Category" id="b-category"
+                                    name="category" value="" required>
+                                    <option selected disabled>Category</option>
+                                    <option value="History">History</option>
+                                    <option value="Health & body">Health & body</option>
+                                    <option value="Religion">Religion</option>
+                                    <option value="Computers & Technology">Computers & Technology</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="b-author">Author</label>
+                                <input type="text" class="form-control" id="b-author" name="author" placeholder="Author"
+                                    value="" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="b-price">Price</label>
+                                <input type="number" class="form-control" id="b-price" name="price" placeholder="Price"
+                                    value="" required>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-sm" id="b-edit">Save changes</button>
+                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Product Modal -->
+    <div class="container">
+        <div class="modal fade" id="deleteBook" tabindex="-1" data-backdrop="static" data-keyboard="false"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Book</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="deleteBook" action="">
+                            <input type="hidden" id="Myid" name="id" value="">
+                            <p>Are you sure you want to delete this Book?</p>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-danger btn-sm" id="b-delete">Delete
+                                    Book</button>
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    data-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+    <script src={% static "js/script.js" %}></script>
+</body>
+
+</html>

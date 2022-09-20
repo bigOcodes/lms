@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block bodyblock %}
+<div class="row justify-content-center gap-5" id="galleryView">
+    {% for book in books %}
+    <div class="card shadow border-0 py-2" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+            <p class="card-text"><strong>Category:</strong> {{ book.category }}</p>
+            <p class="card-text"><strong>Price:</strong> ${{ book.price }}</p>
+        </div>
+        <div class="card-footer" style="background: none;">
+            <a href="#" class="btn btn-primary">Get Book</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

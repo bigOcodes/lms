@@ -15,10 +15,8 @@ def Index(request):
 '''
 django-rest api Documentation
 BooksAPI - use to fetch all books and using GET method for fetching data
-BooksDetailsAPI - use to fetch a book by id and using GET method for fetching data. for e.g., booksDetailsAPI/1/
-AddBooksAPI - use to add book to database and using POST method for post a data into database
-EditBookAPI - use to update existing data in database
-DeleteBookAPI - use to delete data from database
+
+url - api/books/
 '''
 
 @api_view(['GET'])
@@ -27,12 +25,20 @@ def BooksAPI(request):
     serializer = BookSerializer(books, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+'''
+BooksDetailsAPI - use to fetch a book by id and using GET method for fetching data. for e.g., booksDetailsAPI/1/
+url api/books/<int:id>/
+'''
 @api_view(['GET'])
 def BooksDetailsAPI(request, id):
     books = get_object_or_404(Books, id=id)
     serializer = BookSerializer(books, many=False)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+'''
+AddBooksAPI - use to add book to database and using POST method for post a data into database
+url - api/books/add/
+'''
 @api_view(['POST'])
 def AddBooksAPI(request):
     serializer = BookSerializer(data=request.data)
@@ -41,6 +47,11 @@ def AddBooksAPI(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+'''
+EditBookAPI - use to update existing data in database
+url - api/books/edit/<int:id>/
+'''
 
 @api_view(['PUT'])
 def EditBookAPI(request, id):
@@ -52,6 +63,11 @@ def EditBookAPI(request, id):
 
     print(request.data)
     return Response(serializer.errors, status=status.HTTP_304_NOT_MODIFIED)
+
+'''
+DeleteBookAPI - use to delete data from database
+url - api/books/delete/<int:id>/
+'''
 
 @api_view(['DELETE'])
 def DeleteBookAPI(request, id):

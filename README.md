@@ -8,8 +8,14 @@ Number](https://img.shields.io/github/tag/rero/rero-ils.svg)](https://github.com
 status](https://hosted.weblate.org/widgets/rero_plus/-/rero-ils/svg-badge.svg)](https://hosted.weblate.org/engage/rero_plus/?utm_source=widget)
 
 # Library Management System
-Library Management System with CRUD operation using Django-Rest-Framework
+Library Management System with CRUD operation using Django-Rest-Framework.
 
+Backend - Python-Django  
+RESTful API's: Django-Rest-Framework  
+Database - MySQL  
+Frontend - AJAX  
+
+Displaying data in web-application by using AJAX integrated with Django-Rest-Freamework.
 
 ### Student View or Home page
 Here you can see all the books in the Library

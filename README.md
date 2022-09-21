@@ -13,7 +13,7 @@ Library Management System with CRUD operation using Django-Rest-Framework.
 Backend - Python-Django  
 RESTful API's: Django-Rest-Framework  
 Database - MySQL  
-Frontend - AJAX  
+Frontend - HTML, CSS, jQuery-AJAX 
 
 Displaying data in web-application by using AJAX integrated with Django-Rest-Freamework.
 
